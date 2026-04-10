@@ -1,0 +1,21 @@
+name: planck-fitting
+
+services:
+  planck-fitting:
+    build: .
+    container_name: planck-fitting-app
+    volumes:
+      - ./output:/app/output
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONIOENCODING=utf-8
+
+  planck-test:
+    build: .
+    container_name: planck-test-runner
+    command: ["python", "-m", "pytest", "tests/", "-v", "--tb=short"]
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONIOENCODING=utf-8
+    profiles:
+      - test

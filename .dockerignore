@@ -1,0 +1,15 @@
+__pycache__
+*.pyc
+*.pyo
+.git
+.gitignore
+.dockerignore
+output/
+.venv/
+venv/
+.idea/
+.vscode/
+*.md
+.agent/
+.omc/
+.windsurf/
