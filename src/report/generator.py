@@ -237,7 +237,7 @@ class ReportGenerator:
         for i, sid in enumerate(sb.source_ids):
             lines.append(
                 f"  {sid}: T={sb.fitted_temperatures[i]:.2f} K, "
-                f"j={sb.sb_power[i]:.2f} W/m³, "
+                f"j={sb.sb_power[i]:.2f} W/m², "
                 f"ε={sb.emissivities[i]:.4f}"
             )
 

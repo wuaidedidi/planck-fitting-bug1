@@ -255,7 +255,7 @@ class ResultPlotter:
                 c=SOURCE_COLORS[idx % 3], edgecolors="black", zorder=5,
             )
         T_line = np.linspace(temps_arr.min() * 0.8, temps_arr.max() * 1.2, 100)
-        ax.plot(T_line, self._model.constants.b_wien * 1e3 / T_line, "--", color="gray", linewidth=2)
+        ax.plot(T_line, self._model.constants.b_wien * 1e6 / T_line, "--", color="gray", linewidth=2)
         ax.set_xlabel("T (K)")
         ax.set_ylabel("λ_max (μm)")
         ax.set_title("Wien Displacement")
@@ -314,7 +314,7 @@ class ResultPlotter:
         corr = report.correlation_matrix
         fig, ax = plt.subplots(figsize=(9, 8))
 
-        im = ax.imshow(corr.values, cmap="RdBu", vmin=-1, vmax=1, aspect="auto")
+        im = ax.imshow(corr.values, cmap="RdBu_r", vmin=-1, vmax=1, aspect="auto")
         ax.set_xticks(range(len(corr.columns)))
         ax.set_yticks(range(len(corr.columns)))
         ax.set_xticklabels(corr.columns, rotation=45, ha="right", fontsize=10)
