@@ -145,7 +145,7 @@ class SpectrumAnalyzer:
         cols = ["wavelength_um", "B_exp", "B_calc", "rd_percent", "temperature", "emissivity"]
         desc = self.master_df[cols].describe()
         desc.loc["range"] = desc.loc["max"] - desc.loc["min"]
-        desc.loc["cv_%"] = (desc.loc["std"] / desc.loc["mean"]) * 100
+        desc.loc["cv_%"] = abs((desc.loc["std"] / desc.loc["mean"]) * 100)
         logger.info("描述性统计完成")
         return desc
 
@@ -205,7 +205,7 @@ class SpectrumAnalyzer:
         eps_arr = np.array(emissivities)
         T4 = temps_arr ** 4
 
-        normalized_power = powers_arr * eps_arr
+        normalized_power = powers_arr / eps_arr
         if len(T4) >= 2:
             _, _, r_value, _, _ = stats.linregress(T4, normalized_power)
             r2 = r_value ** 2
