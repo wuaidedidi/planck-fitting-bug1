@@ -108,7 +108,7 @@ class RadiationSource:
             "wavelength_um": self.wavelengths,
             "spectral_radiance": self.radiances,
             "inv_wavelength": 1.0 / self.wavelengths,
-            "ln_radiance": np.log10(self.radiances),
+            "ln_radiance": np.log(self.radiances),
         })
 
 
