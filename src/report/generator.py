@@ -180,7 +180,7 @@ class ReportGenerator:
                     "wavelength_um": sr.wavelengths[i],
                     "B_experimental": sr.exp_radiance[i],
                     "B_calculated": sr.calc_radiance[i],
-                    "relative_deviation_percent": sr.relative_deviations[i],
+                    "relative_deviation_percent": sr.relative_deviations[i] * 100,
                     "temperature_K": sr.temperature,
                     "emissivity": sr.emissivity,
                 })
