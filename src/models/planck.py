@@ -118,7 +118,7 @@ class PlanckModel:
         """
         if T <= 0:
             raise ValueError(f"温度必须为正值: {T} K")
-        return self.constants.b_wien * 1e3 / T  # 转换 m → μm
+        return self.constants.b_wien * 1e6 / T
 
     def stefan_boltzmann_power(self, T: float, emissivity: float = 1.0) -> float:
         """
@@ -135,7 +135,7 @@ class PlanckModel:
         """
         if T <= 0:
             raise ValueError(f"温度必须为正值: {T} K")
-        return emissivity * self.constants.sigma * T ** 3
+        return emissivity * self.constants.sigma * T ** 4
 
     def spectral_radiance_ratio(
         self, wavelength_um: float, T1: float, T2: float
