@@ -255,7 +255,7 @@ class ResultPlotter:
                 c=SOURCE_COLORS[idx % 3], edgecolors="black", zorder=5,
             )
         T_line = np.linspace(temps_arr.min() * 0.8, temps_arr.max() * 1.2, 100)
-        ax.plot(T_line, self._model.constants.b_wien * 1e3 / T_line, "--", color="gray", linewidth=2)
+        ax.plot(T_line, self._model.constants.b_wien * 1e6 / T_line, "--", color="gray", linewidth=2)
         ax.set_xlabel("T (K)")
         ax.set_ylabel("λ_max (μm)")
         ax.set_title("Wien Displacement")
@@ -349,7 +349,7 @@ class ResultPlotter:
 
             ax = axes[idx, 0]
             ax.plot(
-                s_T.perturbations, s_T.aard_values,
+                s_T.perturbations * 100, s_T.aard_values,
                 "o-", color="#E74C3C", linewidth=2, markersize=4,
             )
             ax.axvline(x=0, color="gray", linestyle="--", alpha=0.5)
@@ -359,7 +359,7 @@ class ResultPlotter:
 
             ax = axes[idx, 1]
             ax.plot(
-                s_eps.perturbations, s_eps.aard_values,
+                s_eps.perturbations * 100, s_eps.aard_values,
                 "s-", color="#2E86C1", linewidth=2, markersize=4,
             )
             ax.axvline(x=0, color="gray", linestyle="--", alpha=0.5)
@@ -461,9 +461,9 @@ class ResultPlotter:
         if report.sensitivity_T:
             s_T = report.sensitivity_T[0]
             s_eps = report.sensitivity_eps[0]
-            ax.plot(s_T.perturbations, s_T.aard_values, "o-",
+            ax.plot(s_T.perturbations * 100, s_T.aard_values, "o-",
                     color="#E74C3C", linewidth=1.5, markersize=3, label="T")
-            ax.plot(s_eps.perturbations, s_eps.aard_values, "s-",
+            ax.plot(s_eps.perturbations * 100, s_eps.aard_values, "s-",
                     color="#2E86C1", linewidth=1.5, markersize=3, label="ε")
             ax.set_xlabel("Perturbation (%)")
             ax.set_ylabel("AARD (%)")

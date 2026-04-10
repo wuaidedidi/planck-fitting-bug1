@@ -116,8 +116,8 @@ class SpectrumAnalyzer:
                     "inv_wavelength": 1.0 / sr.wavelengths[i],
                     "B_exp": sr.exp_radiance[i],
                     "B_calc": sr.calc_radiance[i],
-                    "ln_B_exp": np.log10(sr.exp_radiance[i]),
-                    "ln_B_calc": np.log10(sr.calc_radiance[i]),
+                    "ln_B_exp": np.log(sr.exp_radiance[i]),
+                    "ln_B_calc": np.log(sr.calc_radiance[i]),
                     "residual": sr.residuals[i],
                     "abs_residual": abs(sr.residuals[i]),
                     "relative_deviation": sr.relative_deviations[i],
@@ -170,7 +170,7 @@ class SpectrumAnalyzer:
         temps = np.array(temperatures)
         w_calc = np.array(wien_peaks)
         w_obs = np.array(observed_peaks)
-        devs = (w_obs - w_calc) / w_obs * 100
+        devs = (w_calc - w_obs) / w_obs * 100
 
         result = WienVerification(
             source_ids=source_ids,
