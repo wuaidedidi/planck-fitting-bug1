@@ -381,16 +381,20 @@ class ResultPlotter:
         rd = report.master_df["rd_percent"].values
         fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
 
-        ax1.hist(rd, bins=15, color="#3498DB", edgecolor="black",
-                 alpha=0.7, density=False, label="Observed")
+        n, bins_edge, patches = ax1.hist(
+            rd, bins=15, color="#3498DB", edgecolor="black",
+            alpha=0.7, density=False, label="Observed"
+        )
         mu, sigma = rd.mean(), rd.std()
         if sigma > 0:
             x_fit = np.linspace(rd.min() - 1, rd.max() + 1, 100)
             from scipy.stats import norm
-            ax1.plot(x_fit, norm.pdf(x_fit, mu, sigma), "r-", linewidth=2,
+            bin_width = bins_edge[1] - bins_edge[0]
+            scaled_pdf = norm.pdf(x_fit, mu, sigma) * len(rd) * bin_width
+            ax1.plot(x_fit, scaled_pdf, "r-", linewidth=2,
                      label=f"Normal($\\mu$={mu:.2f}, $\\sigma$={sigma:.2f})")
         ax1.set_xlabel("Relative Deviation (%)")
-        ax1.set_ylabel("Density")
+        ax1.set_ylabel("Frequency")
         ax1.set_title("Residual Distribution")
         ax1.legend(fontsize=9)
 

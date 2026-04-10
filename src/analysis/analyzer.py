@@ -121,8 +121,8 @@ class SpectrumAnalyzer:
                     "residual": sr.residuals[i],
                     "abs_residual": abs(sr.residuals[i]),
                     "relative_deviation": sr.relative_deviations[i],
-                    "rd_percent": sr.relative_deviations[i],
-                    "abs_rd_percent": abs(sr.relative_deviations[i]),
+                    "rd_percent": sr.relative_deviations[i] * 100,
+                    "abs_rd_percent": abs(sr.relative_deviations[i]) * 100,
                     "temperature": sr.temperature,
                     "emissivity": sr.emissivity,
                 })
@@ -132,7 +132,7 @@ class SpectrumAnalyzer:
         bins = pd.cut(
             df["wavelength_um"],
             bins=[0, 1.0, 3.0, 100.0],
-            labels=["长波(MIR, >3μm)", "中波(NIR, 1-3μm)", "短波(UV-Vis, <1μm)"],
+            labels=["短波(UV-Vis, <1μm)", "中波(NIR, 1-3μm)", "长波(MIR, >3μm)"],
         )
         df["wave_group"] = bins
 
