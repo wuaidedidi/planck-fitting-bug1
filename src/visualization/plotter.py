@@ -381,8 +381,8 @@ class ResultPlotter:
         rd = report.master_df["rd_percent"].values
         fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
 
-        ax1.hist(rd, bins=15, color="#3498DB", edgecolor="black",
-                 alpha=0.7, density=False, label="Observed")
+        n, bins, _ = ax1.hist(rd, bins=15, color="#3498DB", edgecolor="black",
+                 alpha=0.7, density=True, label="Observed")
         mu, sigma = rd.mean(), rd.std()
         if sigma > 0:
             x_fit = np.linspace(rd.min() - 1, rd.max() + 1, 100)
